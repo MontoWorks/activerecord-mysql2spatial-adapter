@@ -42,7 +42,7 @@ module ActiveRecord
 
         FACTORY_SETTINGS_CACHE = {}
 
-        def initialize(factory_settings_, name, default, sql_type_metadata = nil, null = true, table_name = nil, default_function = nil, collation = nil, comment: nil)
+        def initialize(factory_settings_, name, default, sql_type_metadata = nil, null = true, table_name = nil, default_function = nil, collation = nil)
           @factory_settings = factory_settings_
           @table_name = table_name
           @geometric_type = ::RGeo::ActiveRecord.geometric_type_from_name(sql_type_metadata.sql_type)
@@ -51,7 +51,7 @@ module ActiveRecord
           else
             @limit = sql_type_metadata.limit
           end
-          super(name, default, sql_type_metadata, null, table_name, default_function, collation, comment: comment)
+          super(name, default, sql_type_metadata, null, table_name, default_function, collation)
           FACTORY_SETTINGS_CACHE[factory_settings_.object_id] = factory_settings_
         end
 
